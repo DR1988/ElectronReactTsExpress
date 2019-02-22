@@ -1,0 +1,6 @@
+node_modules
+dist
+build
+app/main.preprod.js
+app/main.prod.js
+app/main.prod.js.map
