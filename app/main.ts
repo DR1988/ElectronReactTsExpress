@@ -1,6 +1,5 @@
 // Modules to control application life and create native browser window
 import express from 'express'
-import socket from 'socket.io'
 import socketServer from './server/index'
 
 const { app, BrowserWindow } = require('electron')
@@ -25,10 +24,6 @@ const HTML = `<!DOCTYPE html>
 </body>
 </html>`
 
-const exp = express()
-const http = require('http').Server(exp)
-
-
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
@@ -45,7 +40,7 @@ let mainWindow
 
 let httpInstance
 async function createWindow() {
-  const port = process.env.PORT ? process.env.PORT : 3000
+  const port : string | number = process.env.PORT || 3000
 
   // Create the browser window.
   // await installExtensions()
@@ -59,9 +54,11 @@ async function createWindow() {
   })
 
   if (process.env.NODE_ENV === 'production') {
+    const exp = express()
+    const http = require('http').Server(exp)
     socketServer(http)
     exp.get(/.*/, (req, res) => res.send(HTML))
-    httpInstance = http.listen(port || 3000, () => {
+    httpInstance = http.listen(port, () => {
       const address = http.address()
       console.log('Listening on: %j', address)
       console.log(' -> that probably means: http://localhost:%d', address.port)
@@ -70,9 +67,9 @@ async function createWindow() {
 
   // and load the index.html of the app.
   if (process.env.NODE_ENV === 'development') {
-    mainWindow.loadURL('http://localhost:3000/')
+    mainWindow.loadURL(`http://localhost:${port}/`)
   } else {
-    mainWindow.loadURL('http://localhost:3000/')
+    mainWindow.loadURL(`http://localhost:${port}/`)
     // mainWindow.loadURL(`file://${__dirname}/index.prod.html`)
   }
 

@@ -19,7 +19,7 @@ export default {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'renderer.dev.js',
-    publicPath: `http://localhost:${3000}/dist/`,
+    publicPath: `http://localhost:${process.env.PORT}/dist/`,
   },
 
   devtool: 'inline-source-map',
@@ -72,9 +72,6 @@ export default {
       'process.env': {
         NODE_ENV: '"development"',
       },
-    }),
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: 'development',
     }),
 
     new webpack.HotModuleReplacementPlugin({

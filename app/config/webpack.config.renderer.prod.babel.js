@@ -73,9 +73,6 @@ export default {
         NODE_ENV: '"production"',
       },
     }),
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: 'production',
-    }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional

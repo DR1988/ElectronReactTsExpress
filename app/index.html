@@ -24,7 +24,6 @@
     document.write(
       scripts
         .map(script => {
-          console.log(script)
           return `<script defer src="${script}"><\/script>`
         })
         .join('')
