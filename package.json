@@ -29,7 +29,21 @@
       "app/main.prod.js",
       "app/main.prod.js.map",
       "package.json"
-    ]
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "msi"
+      ]
+    },
+    "directories": {
+      "buildResources": "app/resources",
+      "output": "release"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DR1988/ElectronReactTsExpress"
   },
   "author": "DR1988",
   "devDependencies": {
