@@ -37,7 +37,7 @@ export default {
         exclude: /node_modules/,
       },
       {
-        test: /common\.(scss|sass)$/,
+        test: /common\.(s?css|sass)$/,
         use: [
           {
             loader: 'style-loader',
@@ -51,7 +51,7 @@ export default {
         ],
       },
       {
-        test: /^((?!common).)*\.(scss|sass)$/,
+        test: /^((?!common).)*\.(s?css|sass)$/,
         use: [
           {
             loader: 'style-loader',
